@@ -1,7 +1,5 @@
 package mybatis_spring_study;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
