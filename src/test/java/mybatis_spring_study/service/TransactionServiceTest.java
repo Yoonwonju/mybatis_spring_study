@@ -38,7 +38,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(1, "태스크포스", 10);
 		Employee employee = new Employee(1004, "박신혜", "과장", new Employee(4377), 4100000, department);
-		service.registerTransaction(employee, department);
+		service.trRegister(employee, department);
 	}
 	
 	@Test(expected = DuplicateKeyException.class)
@@ -46,7 +46,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(6, "태스크포스", 10);
 		Employee employee = new Employee(4377, "박신혜", "과장", new Employee(4377), 4100000, department);
-		service.registerTransaction(employee, department);
+		service.trRegister(employee, department);
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(6, "태스크포스", 10);
 		Employee employee = new Employee(1005, "박신혜", "과장", new Employee(4377), 4100000, department);
-		service.registerTransaction(employee, department);
+		service.trRegister(employee, department);
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -62,7 +62,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(321);
 		Employee employee = new Employee(1005);
-		service.unRegisterTransaction(employee, department);
+		service.trUnRegister(employee, department);
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -70,7 +70,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(6);
 		Employee employee = new Employee(5432);
-		service.unRegisterTransaction(employee, department);
+		service.trUnRegister(employee, department);
 	}
 	
 	@Test
@@ -78,7 +78,7 @@ public class TransactionServiceTest {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		Department department = new Department(6);
 		Employee employee = new Employee(1005);
-		service.unRegisterTransaction(employee, department);
+		service.trUnRegister(employee, department);
 	}
 
 }
