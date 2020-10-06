@@ -2,17 +2,16 @@ package mybatis_spring_study.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import mybatis_spring_study.dto.Department;
 import mybatis_spring_study.dto.Employee;
 import mybatis_spring_study.mapper.DepartmentMapper;
 import mybatis_spring_study.mapper.EmployeeMapper;
-import mybatis_spring_study.service.TransactionService;
+import mybatis_spring_study.service.TransactionAOPService;
 
 //@Component 써도됨
 @Service
-public class TransactionServiceImpl implements TransactionService {
+public class TransactionAOPServiceImpl implements TransactionAOPService {
 
 	@Autowired
 	private DepartmentMapper deptMapper;
@@ -20,8 +19,9 @@ public class TransactionServiceImpl implements TransactionService {
 	@Autowired
 	private EmployeeMapper empMapper;
 	
+	
+	//@Transaction 빠지고 Tx 에 추가
 	@Override
-	@Transactional
 	public void trRegister(Department department, Employee employee) {
 		// 부서가 등록되고 난 후 해당 부서에 사원을 추가
 		deptMapper.insertDepartment(department);
@@ -30,7 +30,6 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	@Transactional
 	public void trUnRegister(Department department, Employee employee) {
 		int res = empMapper.deleteEmployee(employee);
 		res += deptMapper.deleteDepartment(department);

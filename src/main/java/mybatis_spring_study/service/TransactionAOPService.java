@@ -3,7 +3,7 @@ package mybatis_spring_study.service;
 import mybatis_spring_study.dto.Department;
 import mybatis_spring_study.dto.Employee;
 
-public interface TransactionService {
+public interface TransactionAOPService {
 	
 	public void trRegister(Department department, Employee employee);
 	
